@@ -1,9 +1,9 @@
-const Task = () => {
+const Task = ({task}:{task : string}) => {
   return (
-    <div className="p-5 h-36 bg-white shadow-md w-full rounded-md flex justify-between gap-1">
+    <div className="p-5 h-36 bg-white shadow-md w-full rounded-md flex justify-between sm:gap-1">
       <div className="flex gap-5 items-center">
         <input type="radio" />
-        <h2 className="font-bold text-lg md:text-2xl">Comer papaia</h2>
+        <h2 className="font-bold text-lg md:text-2xl">{task}</h2>
       </div>
       <div className="grid gap-4">
         <button

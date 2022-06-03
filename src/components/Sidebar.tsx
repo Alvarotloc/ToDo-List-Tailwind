@@ -1,10 +1,24 @@
 import { useState } from "react";
+import useTasks from '../hooks/useTasks';
+import { ITasksProvider } from '../interfaces/index';
 const Sidebar = (): JSX.Element => {
   const [isSideBarVisible, setIsSideBarVisible] = useState<boolean>(false);
+  const [tarea, setTarea] = useState<string>('');
+
+    const {tasks,setTasks}:ITasksProvider = useTasks();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if(tarea.trim().length === 0){
+        return;
+    }
+    setTasks([...tasks,tarea]);
+    setTarea('');
+  }
   return (
     <>
-      <aside className={`${isSideBarVisible ? 'left-0' : '-left-96'} bg-purple-500 max-w-xs p-5 h-full md:w-80 absolute w-full md:static z-10 transition-all duration-300`}>
-        <form className="grid gap-5">
+      <aside className={`${isSideBarVisible ? 'left-0' : '-left-96'} bg-purple-500 max-w-xs p-5 h-full md:w-80 absolute w-full md:static z-10 transition-all duration-500`}>
+        <form className="grid gap-5" onSubmit={handleSubmit}>
           <fieldset className="grid gap-8">
             <legend className="font-bold text-2xl mb-4 text-white">
               Create a Task
@@ -18,6 +32,8 @@ const Sidebar = (): JSX.Element => {
               </label>
               <input
                 type="text"
+                value={tarea}
+                onChange={(e) => setTarea(e.target.value)}
                 name="task"
                 id="task"
                 placeholder="Insert Your Task Here"

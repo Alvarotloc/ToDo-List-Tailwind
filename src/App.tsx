@@ -1,15 +1,18 @@
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import TaskList from "./components/TaskList";
+import { TasksProvider } from "./context/TasksProvider";
 const App = () => {
   return (
-    <main className="h-screen">
-      <Header />
-      <div className="h-5/6 flex justify-center">
-        <Sidebar />
-        <TaskList />
-      </div>
-    </main>
+    <TasksProvider>
+      <main className="h-screen">
+        <Header />
+        <div className="h-5/6 flex justify-center">
+          <Sidebar />
+          <TaskList />
+        </div>
+      </main>
+    </TasksProvider>
   );
 };
 
