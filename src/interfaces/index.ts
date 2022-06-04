@@ -5,3 +5,7 @@ export interface ITasksProvider {
     tasks : string[];
     setTasks : (tasks : string[]) => void;
 }
+export interface IAlertProps {
+    error: boolean;
+    message: string;
+}
